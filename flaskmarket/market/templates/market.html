@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+{% block title %}
+ Pirate Trading Market | Products
+{% endblock %} 
+{% block content %}
+<div class="row" style="margin-top:20px; margin-left:20px">
+    <div class="col-8">
+        <h2>Available items in the market</h2>
+        <p>click on the  items to start buying</p>
+        <br>
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">BARCODE</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                {% include 'includes/items_modals.html' %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.barcode }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id}}">more info</button>
+                        <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#Modal-purchaseconfirm-{{item.id}}">pruchase this item</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+       <h2>Owned items</h2>
+       <p>click on sell item to put an item back on market</p>
+       <br>
+       <div class="row">
+           {% for owned_item in owned_items %}
+              {% include 'includes/owned_items_models.html' %}
+               <div class="col-md-6">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ owned_item.name}}</h5>
+                        <button type="button" class="btn btn-outline-danger" style="margin-bottom:auto" data-toggle="modal" data-target="#Modal-sellingconfirm-{{ owned_item.id}}">
+                            sell this item
+                        </button>
+                        <p class="card-text"><strong> this item cost {{ owned_item.price }}$</strong></p>
+                    </div>
+                </div>
+               </div>
+           {% endfor %}
+       </div>
+    </div>
+</div>
+
+{% endblock %}

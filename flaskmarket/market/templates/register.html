@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Pirate Trading Market | Register
+{% endblock %}
+ 
+{% block content %}
+<body class="text-center">
+     <div class="container">
+  <form method="POST" class="form-register" style="color:white">
+    {{ form.hidden_tag() }}
+    <img class="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQZlSDrOimHZLy9iaejZ6qEHGDkp87zD_QDF3zM-B_3w&s=10" style="width:150px; height:150px; border-radius:50%; object-fit:cover;"></image>
+    <h1 class="h3 mb-3 font-weight-normal">
+        please create your account 
+    </h1>
+    <br>
+    {{ form.username.label() }}
+    {{ form.username(class="form-control", placeholder="User Name") }}
+
+    {{ form.email_address.label() }}
+    {{ form.email_address(class="form-control", placeholder="email address") }}
+
+    {{ form.password1.label() }}
+    {{ form.password1(class="form-control", placeholder="password") }}
+
+    {{ form.password2.label() }}
+    {{ form.password2(class="form-control", placeholder="confirm password") }}
+    <br>
+    <div>
+     <h6> Already have an account </h6>
+      <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}"> login </a>
+    </div>
+    <br>
+    {{ form.submit(class="btn btn-lg bnt-block btn-primary") }}
+  </form>
+</div>
+</body>
+{%  endblock %}
